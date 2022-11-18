@@ -1,8 +1,8 @@
 //Grabbing all the DOM elements:
 const title = document.querySelector('.game-title');
 const gameOver = document.querySelector('.game-over');
-const displayPlayerScore = document.querySelector('.player-score');
-const displayComputerScore = document.querySelector('.computer-score');
+let displayPlayerScore = document.querySelector('.player-score');
+let displayComputerScore = document.querySelector('.computer-score');
 const subtitle = document.querySelector('.game-subtitle');
 const rockBtn = document.querySelector('.rock');
 const paperBtn = document.querySelector('.paper');
@@ -27,7 +27,60 @@ function getComputerChoice() {
     case 2:
       return 'scissors';
       break;
+    default:
+      console.log('Error in the get computer choice function.');
   }
 }
 
-getComputerChoice();
+//Event Listeners for buttons:
+rockBtn.addEventListener('click', function () {
+  let computerSelection = getComputerChoice();
+  let playerSelection = 'rock';
+  console.log(playerSelection, computerSelection);
+  playRound(playerSelection, computerSelection);
+});
+
+paperBtn.addEventListener('click', function () {
+  let computerSelection = getComputerChoice();
+  let playerSelection = 'paper';
+  playRound(playerSelection, computerSelection);
+});
+
+scissorsBtn.addEventListener('click', function () {
+  let computerSelection = getComputerChoice();
+  let playerSelection = 'scissors';
+  playRound(playerSelection, computerSelection);
+});
+
+//Reload page on click
+resetBtn.addEventListener('click', function () {
+  window.location.reload();
+});
+
+//Playround function
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection === computerSelection) {
+    subtitle.textContent = `This round is a tie.`;
+  } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+    displayPlayerScore.textContent = ++playerScore;
+    subtitle.textContent = `You win! Rock beats scissors.`;
+  } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+    displayPlayerScore.textContent = ++playerScore;
+    subtitle.textContent = `You win! Paper beats rock.`;
+  } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+    displayPlayerScore.textContent = ++playerScore;
+    subtitle.textContent = `You win! Scissors beats paper.`;
+  } //Computer wins
+  else if (computerSelection === 'rock' && playerSelection === 'scissors') {
+    displayComputerScore.textContent = ++computerScore;
+    subtitle.textContent = `You lose. Rock beats scissors.`;
+  } else if (computerSelection === 'paper' && playerSelection === 'rock') {
+    displayComputerScore.textContent = ++computerScore;
+    subtitle.textContent = `You lose. Paper beats rock`;
+  } else if (computerSelection === 'scissors' && playerSelection === 'paper') {
+    displayComputerScore.textContent = ++computerScore;
+    subtitle.textContent = `You lose. Scissors beat paper.`;
+  } else {
+    console.log('Error in the playround function');
+  }
+}
