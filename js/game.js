@@ -36,7 +36,6 @@ function getComputerChoice() {
 rockBtn.addEventListener('click', function () {
   let computerSelection = getComputerChoice();
   let playerSelection = 'rock';
-  console.log(playerSelection, computerSelection);
   playRound(playerSelection, computerSelection);
 });
 
@@ -83,4 +82,26 @@ function playRound(playerSelection, computerSelection) {
   } else {
     console.log('Error in the playround function');
   }
+  endGame();
 }
+
+//End game when user or computer reaches 5 points:
+function endGame() {
+  if (playerScore >= 5) {
+    gameOver.textContent = `Game Over. You Win!`;
+    disableBtns();
+  } else if (computerScore >= 5) {
+    gameOver.textContent = `Game Over. You Lose!`;
+    disableBtns();
+  }
+}
+
+//Disable buttons when game is over
+function disableBtns() {
+  rockBtn.disabled = true;
+  paperBtn.disabled = true;
+  scissorsBtn.disabled = true;
+  //Play again / reset game
+  resetBtn.style.display = 'inline';
+}
+
