@@ -88,9 +88,11 @@ function playRound(playerSelection, computerSelection) {
 //End game when user or computer reaches 5 points:
 function endGame() {
   if (playerScore >= 5) {
+    gameOver.classList.add('game-over-visible');
     gameOver.textContent = `Game Over. You Win!`;
     disableBtns();
   } else if (computerScore >= 5) {
+    gameOver.classList.add('game-over-visible');
     gameOver.textContent = `Game Over. You Lose!`;
     disableBtns();
   }

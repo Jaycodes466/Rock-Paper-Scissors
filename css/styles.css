@@ -39,15 +39,17 @@ button:hover {
     font-weight: bold;   
 }
 
-.game-over {
-    padding: 1rem 0;
+
+
+.game-over-visible {
     font-size: 1.8rem;
     font-weight: bold;
     text-transform: uppercase;
+    padding: 2rem 0 0 0;
 }
 
 .game-subtitle {
-    padding-bottom: 1rem;
+    padding: 2rem 0;
 }
 
 .game-stats {
@@ -55,7 +57,7 @@ button:hover {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
 }
 
 .computer-score-title {
